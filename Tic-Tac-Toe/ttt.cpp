@@ -1,17 +1,9 @@
 // Tic Tac Toe Game
 
 #include <iostream>
-#include <vector>
+#include "ttt_func.hpp"
 
 using namespace std;
-
-void drawBoard(const vector<char>& playground) {
-        cout << " " << playground[0] << " | " << playground[1] << " | " << playground[2] << endl;
-        cout << "---|---|---" << endl;
-        cout << " " << playground[3] << " | " << playground[4] << " | " << playground[5] << endl;
-        cout << "---|---|---" << endl;
-        cout << " " << playground[6] << " | " << playground[7] << " | " << playground[8] << endl;
-    }
 
 int main () {
     vector<char> playground(9, ' ');
@@ -21,20 +13,7 @@ int main () {
     bool gameOver = false;
     bool checkStatus = false;
 
-    cout << "-------------------" << endl;
-    cout << "= TIC - TAC - TOE =" << endl;
-    cout << "-------------------" << endl;
-    cout << endl;
-    cout << "Here are the instruction for the game:" << endl;
-    cout << "As you can see bellow the board is a 3x3 grid, where each cell is numbered from 1 to 9, where 1 is the top left corner and 9 is the bottom right corner." << endl;
-    cout << " " << playground[0] << " | " << playground[1] << " | " << playground[2] << "       1 | 2 | 3 " << endl;
-    cout << "---|---|---" << "     ---|---|---" << endl;
-    cout << " " << playground[3] << " | " << playground[4] << " | " << playground[5] << "       4 | 5 | 6 " << endl;
-    cout << "---|---|---" << "     ---|---|---" << endl;
-    cout << " " << playground[6] << " | " << playground[7] << " | " << playground[8] << "       7 | 8 | 9 " << endl;
-    cout << endl;
-    cout << "Players take turns to place their X or O on the board by entering the coresponding number of the cell." << endl;
-    cout << "GGHF" << endl;
+    welcome();
 
     while (!gameOver) {
 
@@ -48,22 +27,9 @@ int main () {
             playground[position] = player;
 
             // Check rows to see if one of the players has won.
-            if ((playground[0] != ' ' && playground[0] == playground[1] && playground[1] == playground[2]) || 
-                (playground[3] != ' ' && playground[3] == playground[4] && playground[4] == playground[5]) || 
-                (playground[6] != ' ' && playground[6] == playground[7] && playground[7] == playground[8])) {
-                    gameOver = true;
-                    checkStatus = true;
-            // Check columns to see if one of the players has won.
-            } else if ((playground[0] != ' ' && playground[0] == playground[3] && playground[3] == playground[6]) || 
-                       (playground[1] != ' ' && playground[1] == playground[4] && playground[4] == playground[7]) || 
-                       (playground[2] != ' ' && playground[2] == playground[5] && playground[5] == playground[8])) {
-                            gameOver = true;
-                            checkStatus = true;
-            // Check diagonals to see if one of the players has won.
-            } else if ((playground[0] != ' ' && playground[0] == playground[4] && playground[4] == playground[8]) || 
-                       (playground[6] != ' ' &&playground[6] == playground[4] && playground[4] == playground[2])) {
-                            gameOver = true;
-                            checkStatus = true;
+            if (checkWin(playground)) {
+                checkStatus = true;
+                gameOver = true;
             } else if (round == 9) {
                 checkStatus = false;
                 gameOver = true;
@@ -76,7 +42,6 @@ int main () {
                     player = 'X';
                 }
             }
-            
         } else {
             cout << "You can't place here. Please try again." << endl;
         }
