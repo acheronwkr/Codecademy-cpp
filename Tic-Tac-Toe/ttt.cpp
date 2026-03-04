@@ -14,12 +14,27 @@ void drawBoard(const vector<char>& playground) {
     }
 
 int main () {
-    vector<char> playground = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    vector<char> playground(9, ' ');
     char player = 'X';
     int position;
     int round = 1;
     bool gameOver = false;
     bool checkStatus = false;
+
+    cout << "-------------------" << endl;
+    cout << "= TIC - TAC - TOE =" << endl;
+    cout << "-------------------" << endl;
+    cout << endl;
+    cout << "Here are the instruction for the game:" << endl;
+    cout << "As you can see bellow the board is a 3x3 grid, where each cell is numbered from 1 to 9, where 1 is the top left corner and 9 is the bottom right corner." << endl;
+    cout << " " << playground[0] << " | " << playground[1] << " | " << playground[2] << "       1 | 2 | 3 " << endl;
+    cout << "---|---|---" << "     ---|---|---" << endl;
+    cout << " " << playground[3] << " | " << playground[4] << " | " << playground[5] << "       4 | 5 | 6 " << endl;
+    cout << "---|---|---" << "     ---|---|---" << endl;
+    cout << " " << playground[6] << " | " << playground[7] << " | " << playground[8] << "       7 | 8 | 9 " << endl;
+    cout << endl;
+    cout << "Players take turns to place their X or O on the board by entering the coresponding number of the cell." << endl;
+    cout << "GGHF" << endl;
 
     while (!gameOver) {
 
@@ -29,22 +44,24 @@ int main () {
         position--; // Since the board is starting from 0 index we simply decrement the position by 1 from the user input so it fiits the 0-8 index of the board.
 
         // Check whether the move is valid by checking the 0-8 range and if the position is not already taken by another player.
-        if (position >= 0 && position < 9 && playground[position] != 'X' && playground[position] != 'O') {
+        if (position >= 0 && position < 9 && playground[position] == ' ') {
             playground[position] = player;
 
             // Check rows to see if one of the players has won.
-            if ((playground[0] == playground[1] && playground[1] == playground[2]) || 
-                (playground[3] == playground[4] && playground[4] == playground[5]) || 
-                (playground[6] == playground[7] && playground[7] == playground[8])) {
+            if ((playground[0] != ' ' && playground[0] == playground[1] && playground[1] == playground[2]) || 
+                (playground[3] != ' ' && playground[3] == playground[4] && playground[4] == playground[5]) || 
+                (playground[6] != ' ' && playground[6] == playground[7] && playground[7] == playground[8])) {
                     gameOver = true;
                     checkStatus = true;
-            } else if ((playground[0] == playground[3] && playground[3] == playground[6]) || 
-                    (playground[1] == playground[4] && playground[4] == playground[7]) || 
-                    (playground[2] == playground[5] && playground[5] == playground[8])) {
+            // Check columns to see if one of the players has won.
+            } else if ((playground[0] != ' ' && playground[0] == playground[3] && playground[3] == playground[6]) || 
+                       (playground[1] != ' ' && playground[1] == playground[4] && playground[4] == playground[7]) || 
+                       (playground[2] != ' ' && playground[2] == playground[5] && playground[5] == playground[8])) {
                             gameOver = true;
                             checkStatus = true;
-            } else if ((playground[0] == playground[4] && playground[4] == playground[8]) || 
-                    (playground[6] == playground[4] && playground[4] == playground[2])) {
+            // Check diagonals to see if one of the players has won.
+            } else if ((playground[0] != ' ' && playground[0] == playground[4] && playground[4] == playground[8]) || 
+                       (playground[6] != ' ' &&playground[6] == playground[4] && playground[4] == playground[2])) {
                             gameOver = true;
                             checkStatus = true;
             } else if (round == 9) {
@@ -52,12 +69,14 @@ int main () {
                 gameOver = true;
             }
             round++;
-
-            if (player == 'X') {
-                player = 'O';
-            } else {
-                player = 'X';
+            if (!gameOver) {
+                if (player == 'X') {
+                    player = 'O';
+                } else {
+                    player = 'X';
+                }
             }
+            
         } else {
             cout << "You can't place here. Please try again." << endl;
         }
