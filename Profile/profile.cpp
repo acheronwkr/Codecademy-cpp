@@ -21,12 +21,17 @@ string Profile::view_profile() {
     profile_details += "\nPronouns: " + pronouns;
     profile_details += "\nHobbies: ";
     for (int i = 0; i < hobbies.size(); i++) {
-        profile_details += hobbies[i] + ", ";        
-    }
+        profile_details += hobbies[i];
+        if (i < hobbies.size() - 1) {
+            profile_details += ", ";
+        } else {
+            profile_details += ".\n";
+        }
 
     return profile_details;
 }
 
 void Profile::new_hobby(string new_hobby) {
     hobbies.push_back(new_hobby);
+
 }
