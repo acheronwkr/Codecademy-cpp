@@ -1,5 +1,5 @@
 #include <string>
-#include "func.hpp"
+#include "bleep_func.hpp"
 
 void bleep(std::string word, std::string &text) {
   
