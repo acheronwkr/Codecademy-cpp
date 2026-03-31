@@ -1,0 +1,61 @@
+#include "Library.hpp"
+#include "removeElement.hpp"
+#include <iostream>
+
+using namespace std;
+
+Library::Library() {
+    totalBorrowedBooks = 0;
+    reservedCount = 0;
+}
+
+void Library::listBooks() {
+    cout << "Books that you will find in the library: " << endl;
+    for (auto book : bookList) {
+        cout << book << endl;
+    }
+}
+
+void Library::addBook(string title, double bookCost) {
+    if (bookList.size() < 100) {
+        bookList.push_back(title);
+        LibraryBudget -= bookCost;
+    } else {
+        cout << "Library is full!" << endl;
+    }
+}
+
+bool Library::borrowBook(string title) {
+    for (auto book : bookList) {
+        if (book == title) {
+            removeElement(bookList, title);
+            totalBorrowedBooks++;
+            return true;
+        } else {
+            cout << "Book not found!" << endl;
+            return false;
+        }
+    }
+    return false;
+}
+
+int Library::getTotalBorrowedBooks() {
+    return totalBorrowedBooks;
+}
+
+void Library::reserveBook(string title) const {
+    for (auto book : bookList) {
+        if (book == title) {
+            for (auto reservedBook : reservedBooks) {
+                if (reservedBook != title) {
+                    reservedBooks.push_back(title);
+                    reservedCount++;
+                    cout << "Book reserved: " << title << endl;
+                    cout << "Reserved book count: " << reservedCount << endl;
+                } else {
+                    cout << "Book not reserved!" << endl;
+                }
+            }
+        }
+    }
+}
