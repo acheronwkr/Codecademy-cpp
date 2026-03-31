@@ -30,12 +30,11 @@ bool Library::borrowBook(string title) {
         if (book == title) {
             removeElement(bookList, title);
             totalBorrowedBooks++;
+            cout << "You just borrowed: " << title << endl;
             return true;
-        } else {
-            cout << "Book not found!" << endl;
-            return false;
         }
     }
+    cout << "Book not found!" << endl;
     return false;
 }
 
