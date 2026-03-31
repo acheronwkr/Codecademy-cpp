@@ -43,18 +43,28 @@ int Library::getTotalBorrowedBooks() {
 }
 
 void Library::reserveBook(string title) const {
+    bool validBook = false;
     for (auto book : bookList) {
         if (book == title) {
-            for (auto reservedBook : reservedBooks) {
-                if (reservedBook != title) {
-                    reservedBooks.push_back(title);
-                    reservedCount++;
-                    cout << "Book reserved: " << title << endl;
-                    cout << "Reserved book count: " << reservedCount << endl;
-                } else {
-                    cout << "Book not reserved!" << endl;
-                }
-            }
+            validBook = true;
+            break;
         }
     }
+
+    if (!validBook) {
+        cout << "The book you are trying to reserve is not in library catalog."<< endl;
+        return; 
+    }
+
+    for (auto reservedBook : reservedBooks) {
+        if (reservedBook == title) {
+            cout << "Book already reserved!" << endl;
+            return;
+        }
+    }
+
+    reservedBooks.push_back(title);
+    reservedCount++;
+    cout << "Book reserved: " << title << endl;
+    cout << "Reserved book count: " << reservedCount << endl;
 }
