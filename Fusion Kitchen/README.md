@@ -1,4 +1,4 @@
-#Fusion Kitchen
+# Fusion Kitchen
 Imagine that you’re designing a system to manage different types of restaurants. You notice that all restaurants share some basic features - they all have a name, an address, and they all serve some kind of food. However, each type of restaurant also has its unique characteristics. A Mexican restaurant might have a spice level rating, while a Japanese restaurant might have a traditional seating style.
 
 In this project, we’ll use inheritance in C++ to model these relationships. We’ll start with a base `Restaurant` class that contains the common features all restaurants share. Then, we’ll create specialized restaurant classes for different cuisines using a single inheritance. Finally, we’ll explore the exciting world of fusion cuisine by creating a Mexican-Japanese fusion restaurant using multiple inheritance!
