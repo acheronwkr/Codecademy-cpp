@@ -14,6 +14,7 @@ The `Profile` should store the following information:
 - User’s country
 - User’s pronouns
 - User’s hobbies
+
 And this is how users should be able to interact with their own profiles:
 
 - Create a new profile with some information
