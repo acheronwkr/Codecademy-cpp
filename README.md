@@ -21,3 +21,4 @@ Learn Intermediate C++ projects:
 - [Project 15](https://github.com/acheronwkr/Codecademy-cpp/tree/main/Project%2015%20-%20Fusion%20Kitchen)
 - [Project 16](https://github.com/acheronwkr/Codecademy-cpp/tree/main/Project%2016%20-%20Epic%20Duel)
 - [Project 17](https://github.com/acheronwkr/Codecademy-cpp/tree/main/Project%2017%20-%20Virtual%20Pet%20Simulation)
+- [Project 18](https://github.com/acheronwkr/Codecademy-cpp/tree/main/Project%2018%20-%20Designing%20a%20Departmental%20Dashboard)
